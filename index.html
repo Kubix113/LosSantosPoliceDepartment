@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LSPD - List Gończy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .header {
+            background-color: #005baa;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 5px solid #d4af37;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .wanted-poster {
+            border: 3px solid #d4af37;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .wanted-photo {
+            width: 300px;
+            height: 400px;
+            margin: 0 auto 15px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+        }
+        .wanted-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .wanted-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #d00;
+            margin-bottom: 10px;
+        }
+        .wanted-reward {
+            font-size: 18px;
+            color: #d4af37;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .wanted-info {
+            text-align: left;
+            margin: 20px 0;
+        }
+        .wanted-info h3 {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            color: #005baa;
+        }
+        .charges {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #d00;
+            margin: 10px 0;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+        }
+        .badge {
+            background-color: #005baa;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            display: inline-block;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>LOS SANTOS POLICE DEPARTMENT</h1>
+        <p>PUBLICZNY LIST GOŃCZY</p>
+    </div>
+
+    <div class="container">
+        <div class="wanted-poster">
+            <div class="wanted-photo">
+                <img src="gruby.png" alt="Poszukiwany przestępca">
+            </div>
+            <div class="wanted-title">NAJBARDZIEJ POSZUKIWANY PRZESTĘPCA</div>
+            <div class="wanted-reward">NAGRODA: 1 000 000 $ ZA INFORMACJE PROWADZĄCE DO ZATRZYMANIA</div>
+            
+            <div class="wanted-info">
+                <h3>DANE OSOBOWE</h3>
+                <p><strong>Imię i nazwisko:</strong>Jacob Lakri</p>
+                <p><strong>Data urodzenia:</strong> 15 marca 1978</p>
+                <p><strong>Miejsce urodzenia:</strong> Liberty City, NY</p>
+                <p><strong>Ostatnia znana lokalizacja:</strong> Vinewood Hills, Los Santos</p>
+                <p><strong>Zawód:</strong>Przywódca organizacji przestępczej</p>
+                <p><strong>Wzrost:</strong> 188 cm | <strong>Waga:</strong> 95 kg</p>
+                <p><strong>Oczy:</strong> Brązowe | <strong>Włosy:</strong> Czarne krótko scięte</p>
+                <p><strong>Znaki szczególne:</strong>Brak Tatuży</p>
+                
+                <h3>ZARZUTY</h3>
+                <div class="charges">
+                    <p><span class="badge">LSPD-4876-22</span> Kierowanie zorganizowaną grupą przestępczą (RICO)</p>
+                    <p><span class="badge">LSPD-5123-22</span> Przywództwo w strukturach mafijnych</p>
+                    <p><span class="badge">LSPD-4987-22</span> Wielokrotne zabójstwa z premedytacją</p>
+                    <p><span class="badge">LSPD-5021-22</span> Porwanie</p>
+                    <p><span class="badge">LSPD-4765-22</span> Handel bronią</p>
+                    <p><span class="badge">LSPD-4892-22</span> Produkcja i dystrybucja narkotyków</p>
+                    <p><span class="badge">LSPD-5033-22</span> Pranie brudnych pieniędzy</p>
+                    <p><span class="badge">LSPD-5118-22</span> Korumpowanie urzędników</p>
+                </div>
+                
+                <h3>OPIS SPRAWY</h3>
+                <p>Vincent Gambetti jest podejrzewany o bycie przywódcą rodziny Gambetti, działającej w Los Santos od 2015 roku. Jest poszukiwany w związku z licznymi brutalnymi przestępstwami, w tym tzw. "Masakrą w Vinewood", w której zabito 8 członków wrogiego gangu. Uważany za uzbrojonego i wyjątkowo niebezpiecznego. Ma powiązania ze skorumpowanymi urzędnikami i funkcjonariuszami. Przewidywany wyrok w przypadku skazania: <strong>400 miesięcy pozbawienia wolności</strong>.</p>
+                
+                <h3>WYSTAWIAJĄCY</h3>
+                <p><strong>Det. Michael Dawson</strong>, Wydział Przestępczości Zorganizowanej, LSPD</p>
+                <p><strong>Nr identyfikacyjny:</strong> 7146 | <strong>Stopień:</strong> Kapitan</p>
+                <p><strong>Data wystawienia:</strong> 17 czerwca 2025</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 Los Santos Police Department. Wszelkie prawa zastrzeżone.</p>
+        </div>
+    </div>
+</body>
+</html>
