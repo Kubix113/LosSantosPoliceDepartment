@@ -1,153 +1,234 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LSPD - List Gończy</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-        .header {
-            background-color: #005baa;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            border-bottom: 5px solid #d4af37;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 28px;
-        }
-        .header p {
-            margin: 5px 0 0;
-            font-size: 14px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-        .wanted-poster {
-            border: 3px solid #d4af37;
-            padding: 15px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .wanted-photo {
-            width: 300px;
-            height: 400px;
-            margin: 0 auto 15px;
-            border: 1px solid #ccc;
-            overflow: hidden;
-        }
-        .wanted-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .wanted-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #d00;
-            margin-bottom: 10px;
-        }
-        .wanted-reward {
-            font-size: 18px;
-            color: #d4af37;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-        .wanted-info {
-            text-align: left;
-            margin: 20px 0;
-        }
-        .wanted-info h3 {
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 5px;
-            color: #005baa;
-        }
-        .charges {
-            background-color: #f9f9f9;
-            padding: 10px;
-            border-left: 4px solid #d00;
-            margin: 10px 0;
-        }
-        .footer {
-            text-align: center;
-            font-size: 12px;
-            color: #777;
-            margin-top: 20px;
-            padding-top: 10px;
-            border-top: 1px solid #ddd;
-        }
-        .badge {
-            background-color: #005baa;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 3px;
-            font-size: 12px;
-            display: inline-block;
-            margin-right: 5px;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tuto DEV — Roblox Lua Developers</title>
+  <meta name="description" content="Tuto DEV — portfolio zespołu Roblox Lua developers: scripting, gameplay, UI, modele i optymalizacja." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0d1117;
+      --card:#161b22;
+      --accent:#6ee7b7;
+      --accent2:#3b82f6;
+      --text:#e6eef6;
+      --muted:#9aa6b2;
+      --radius:16px;
+      --shadow:0 10px 30px rgba(0,0,0,0.45);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Poppins,system-ui,sans-serif;background:linear-gradient(180deg,var(--bg),#0a0f1c 70%);color:var(--text);line-height:1.6}
+    a{text-decoration:none;color:inherit}
+    .container{max-width:1200px;margin:auto;padding:32px}
+
+    header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:22px;color:#0f1724;box-shadow:var(--shadow)}
+    .brand h1{font-size:24px;font-weight:700}
+    .brand p{font-size:13px;color:var(--muted)}
+    nav a{margin-left:16px;font-weight:600;color:var(--muted);transition:.2s}
+    nav a:hover{color:var(--accent)}
+
+    .hero{display:grid;grid-template-columns:1fr 380px;gap:32px;margin-top:40px}
+    .card{background:var(--card);padding:24px;border-radius:var(--radius);box-shadow:var(--shadow)}
+    .lead{font-size:32px;font-weight:700;margin-bottom:14px}
+    .lead strong{color:var(--accent)}
+    .muted{color:var(--muted);font-size:15px}
+    .cta{margin-top:20px}
+    .btn{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;padding:12px 20px;border-radius:12px;font-weight:700;display:inline-block;transition:.3s}
+    .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    .chip{background:rgba(255,255,255,0.06);padding:8px 14px;border-radius:999px;font-size:13px;color:var(--accent)}
+
+    .team-list{display:flex;flex-direction:column;gap:16px}
+    .person{display:flex;gap:14px;align-items:center}
+    .avatar{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#1e293b,#0f172a);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent)}
+    .person h4{margin:0;font-size:16px}
+    .person small{color:var(--muted)}
+
+    section{margin-top:40px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+    .service{padding:20px;border-radius:14px;background:var(--card);box-shadow:var(--shadow)}
+    .service h3{margin-bottom:10px;color:var(--accent2)}
+    .service p{color:var(--muted)}
+
+    .portfolio{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;margin-top:20px}
+    .project{display:flex;gap:16px;align-items:center;padding:18px;border-radius:14px;background:var(--card);box-shadow:var(--shadow)}
+    .thumb{width:90px;height:60px;border-radius:10px;background:linear-gradient(135deg,#0b1e2e,#12304a);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
+
+    .testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:20px}
+    .testimonial{padding:18px;border-radius:14px;background:var(--card);box-shadow:var(--shadow);font-size:14px}
+    .muted-tag{display:inline-block;padding:6px 12px;background:rgba(255,255,255,0.05);border-radius:999px;font-size:12px;color:var(--muted)}
+
+    footer{margin-top:50px;padding:18px;border-radius:14px;background:var(--card);color:var(--muted);display:flex;align-items:center;justify-content:space-between;box-shadow:var(--shadow)}
+
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+    }
+  </style>
 </head>
 <body>
-    <div class="header">
-        <h1>LOS SANTOS POLICE DEPARTMENT</h1>
-        <p>PUBLICZNY LIST GOŃCZY</p>
-    </div>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">TD</div>
+        <div>
+          <h1>Tuto DEV</h1>
+          <p>Roblox Lua Development • Gameplay • UI • Assets</p>
+        </div>
+      </div>
+      <nav>
+        <a href="#o-nas">O nas</a>
+        <a href="#uslugi">Usługi</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+    </header>
 
-    <div class="container">
-        <div class="wanted-poster">
-            <div class="wanted-photo">
-                <img src="gruby.png" alt="Poszukiwany przestępca">
-            </div>
-            <div class="wanted-title">NAJBARDZIEJ POSZUKIWANY PRZESTĘPCA</div>
-            <div class="wanted-reward">NAGRODA: 1 000 000 $ ZA INFORMACJE PROWADZĄCE DO ZATRZYMANIA</div>
-            
-            <div class="wanted-info">
-                <h3>DANE OSOBOWE</h3>
-                <p><strong>Imię i nazwisko:</strong>Jacob Lakri</p>
-                <p><strong>Data urodzenia:</strong> 15 marca 1978</p>
-                <p><strong>Miejsce urodzenia:</strong> Liberty City, NY</p>
-                <p><strong>Ostatnia znana lokalizacja:</strong> Vinewood Hills, Los Santos</p>
-                <p><strong>Zawód:</strong>Przywódca organizacji przestępczej</p>
-                <p><strong>Wzrost:</strong> 188 cm | <strong>Waga:</strong> 95 kg</p>
-                <p><strong>Oczy:</strong> Brązowe | <strong>Włosy:</strong> Czarne krótko scięte</p>
-                <p><strong>Znaki szczególne:</strong>Brak Tatuży</p>
-                
-                <h3>ZARZUTY</h3>
-                <div class="charges">
-                    <p><span class="badge">LSPD-4876-22</span> Kierowanie zorganizowaną grupą przestępczą (RICO)</p>
-                    <p><span class="badge">LSPD-5123-22</span> Przywództwo w strukturach mafijnych</p>
-                    <p><span class="badge">LSPD-4987-22</span> Wielokrotne zabójstwa z premedytacją</p>
-                    <p><span class="badge">LSPD-5021-22</span> Porwanie</p>
-                    <p><span class="badge">LSPD-4765-22</span> Handel bronią</p>
-                    <p><span class="badge">LSPD-4892-22</span> Produkcja i dystrybucja narkotyków</p>
-                    <p><span class="badge">LSPD-5033-22</span> Pranie brudnych pieniędzy</p>
-                    <p><span class="badge">LSPD-5118-22</span> Korumpowanie urzędników</p>
-                </div>
-                
-                <h3>OPIS SPRAWY</h3>
-                <p>Vincent Gambetti jest podejrzewany o bycie przywódcą rodziny Gambetti, działającej w Los Santos od 2015 roku. Jest poszukiwany w związku z licznymi brutalnymi przestępstwami, w tym tzw. "Masakrą w Vinewood", w której zabito 8 członków wrogiego gangu. Uważany za uzbrojonego i wyjątkowo niebezpiecznego. Ma powiązania ze skorumpowanymi urzędnikami i funkcjonariuszami. Przewidywany wyrok w przypadku skazania: <strong>400 miesięcy pozbawienia wolności</strong>.</p>
-                
-                <h3>WYSTAWIAJĄCY</h3>
-                <p><strong>Det. Michael Dawson</strong>, Wydział Przestępczości Zorganizowanej, LSPD</p>
-                <p><strong>Nr identyfikacyjny:</strong> 7146 | <strong>Stopień:</strong> Kapitan</p>
-                <p><strong>Data wystawienia:</strong> 17 czerwca 2025</p>
-            </div>
+    <main>
+      <div class="hero">
+        <div class="card">
+          <p class="muted">Zespół Roblox Lua Developers</p>
+          <h2 class="lead">Budujemy angażujące gry w <strong>Roblox Studio</strong> — czysty Lua, kreatywny design, stabilny gameplay</h2>
+          <p class="muted">Specjalizujemy się w skryptach Lua: systemy ekonomii, questy, integracje API, multiplayer i UI zoptymalizowane pod mobile. Nasz kod jest modularny i łatwy w rozbudowie.</p>
+
+          <div class="chips">
+            <span class="chip">Lua Scripting</span>
+            <span class="chip">Gameplay Systems</span>
+            <span class="chip">UI / UX</span>
+            <span class="chip">Assets & Modeling</span>
+            <span class="chip">Optimization</span>
+            <span class="chip">API Integration</span>
+          </div>
+
+          <div class="cta">
+            <a class="btn" href="#kontakt">Skontaktuj się z nami</a>
+          </div>
         </div>
-        
-        <div class="footer">
-            <p>© 2025 Los Santos Police Department. Wszelkie prawa zastrzeżone.</p>
+
+        <aside class="card">
+          <h3>Nasz zespół</h3>
+          <div class="team-list">
+            <div class="person">
+              <div class="avatar">KU</div>
+              <div>
+                <h4>Kubix</h4>
+                <small>Lead scripter • Lua architektura</small>
+              </div>
+            </div>
+            <div class="person">
+              <div class="avatar">BY</div>
+              <div>
+                <h4>Byczorgaming</h4>
+                <small>UI/UX, animacje</small>
+              </div>
+            </div>
+            <div class="person">
+              <div class="avatar">JA</div>
+              <div>
+                <h4>Janusz</h4>
+                <small>Modeling & assety</small>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <section id="uslugi">
+        <h3>Nasze usługi</h3>
+        <div class="grid">
+          <div class="service">
+            <h3>Lua Scripting</h3>
+            <p>Od systemów questów po AI i ekonomię — piszemy czysty i modularny Lua kod.</p>
+          </div>
+          <div class="service">
+            <h3>Gameplay i API</h3>
+            <p>Projektujemy skrypty multiplayer, sklepy i integracje API w Roblox Studio.</p>
+          </div>
+          <div class="service">
+            <h3>UI i Design</h3>
+            <p>Nowoczesne interfejsy, zoptymalizowane dla mobile i PC, przyjazne dla gracza.</p>
+          </div>
         </div>
-    </div>
+      </section>
+
+      <section id="portfolio">
+        <h3>Wybrane projekty</h3>
+        <div class="portfolio">
+          <div class="project">
+            <div class="thumb">Q</div>
+            <div>
+              <strong>Quest System</strong>
+              <div class="muted">System misji i nagród w Lua</div>
+            </div>
+          </div>
+          <div class="project">
+            <div class="thumb">E</div>
+            <div>
+              <strong>Economy Core</strong>
+              <div class="muted">Zaawansowana ekonomia ze wsparciem premium</div>
+            </div>
+          </div>
+          <div class="project">
+            <div class="thumb">U</div>
+            <div>
+              <strong>Ultimate UI Kit</strong>
+              <div class="muted">Biblioteka UI do gier Roblox</div>
+            </div>
+          </div>
+          <div class="project">
+            <div class="thumb">M</div>
+            <div>
+              <strong>Multiplayer Framework</strong>
+              <div class="muted">Framework klient/serwer w Lua</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3>Opinie        </h3>
+        <div class="testimonials">
+          <div class="testimonial">
+            <div style="display:flex;justify-content:space-between"><strong>Karol D.</strong><span class="muted-tag">5/5</span></div>
+            <p class="muted">Profesjonalny kod Lua, zero lagów, świetna optymalizacja.</p>
+          </div>
+          <div class="testimonial">
+            <div style="display:flex;justify-content:space-between"><strong>Studio Nova</strong><span class="muted-tag">5/5</span></div>
+            <p class="muted">Świetna komunikacja, UI wygląda jak w topowych grach Roblox.</p>
+          </div>
+          <div class="testimonial">
+            <div style="display:flex;justify-content:space-between"><strong>Anon</strong><span class="muted-tag">4.8/5</span></div>
+            <p class="muted">System ekonomii działa idealnie, szybkie wdrożenie.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="kontakt">
+        <div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:20px">
+          <div>
+            <h3>Kontakt</h3>
+            <p class="muted">Chcesz współpracować? Pisz: <strong></strong> lub dołącz do naszej grupy Roblox.</p>
+          </div>
+          <a class="btn" href="mailto:contact@tutodev.example">Napisz</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© Tuto DEV — Roblox Lua Developers</div>
+    </footer>
+  </div>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const t=document.querySelector(a.getAttribute('href'));
+        if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+      })
+    })
+  </script>
 </body>
 </html>
